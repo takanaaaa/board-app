@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { browserHistory } from 'react-router';
 import './index.css';
-import App from './containers/App';
+// import App from './containers/App';
+import Routes from './routes';
 import reportWebVitals from './reportWebVitals';
 import registerServiceWorker from './utils/registerServiceWorker';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // historyプロップを渡すことでRoutesが履歴を追跡できる
+  <Routes history ={browserHistory} />,
+  document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 registerServiceWorker();
 reportWebVitals();
