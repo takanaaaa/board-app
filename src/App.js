@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import Create from"./containers/Create";
-// import Create from"./containers/Detail";
+import Detail from"./containers/Detail";
 import Index from"./containers/Index";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path={`/`} element={<Index />} />
         <Route path={`/create/`} element={<Create />} />
-        {/* <Route path={`/detail/`} element={Detail} /> */}
+        <Route path={`/detail/:uid1/:uid2`} element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );
