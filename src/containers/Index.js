@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "./../firebase"
+import { Link } from 'react-router-dom';
 
 function Index() {
   const [posts, setPosts] = useState([]);
@@ -8,7 +9,9 @@ function Index() {
   //リロードした時に1回とってくる
   useEffect(() => {
     const postData = collection(db, "posts");
+
     getDocs(postData).then((snapShot) => {
+      console.log((snapShot.docs.map((doc) => doc.id)))
       setPosts(snapShot.docs.map((doc) => doc.data()));
     });
 
@@ -18,14 +21,23 @@ function Index() {
   }, []);
 
   return(
-    <>
-    {posts.map((post) => (
-      <>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-      </>
-    ))}
-    </>
+    <table>
+      <tbody>
+        {posts.map((post) => (
+          <tr>
+            <td>
+              <h1>{post.title}</h1>
+            </td>
+            <td>
+              <p>{post.body}</p>
+            </td>
+            <td>
+              <Link to={`detail/${post.title}/${post.body}`}>編集</Link>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 

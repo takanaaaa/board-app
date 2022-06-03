@@ -44,7 +44,7 @@ function Create() {
           onChange={(event) => {setNewTitle(event.target.value)}}
          />
         <label>本文</label>
-        <input
+        <textarea
           name='body'
           placeholder='本文を入力してください'
           value={newBody}
